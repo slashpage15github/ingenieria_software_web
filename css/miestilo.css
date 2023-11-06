@@ -1,0 +1,148 @@
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: rgb(131, 209, 209);
+}
+
+p{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 150%;
+    text-align:center;
+}
+
+h1{
+    text-align: center;
+}
+
+.mayusculas{
+    text-transform: uppercase;
+}
+
+input[type=text],input[type=email],select,textarea{
+    width: 100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    resize: vertical;
+}
+
+input[type=radio]{
+    margin-top: 20px;
+    
+}
+
+#l_prod{
+    font-weight: bold;
+    font-size:20px;
+}
+
+label#lbl{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input[type=submit]{
+    background-color:#4CAF50;
+    color:white;
+    padding: 12px 12px;
+    border:none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    cursor:pointer;
+    float:right;
+}
+
+.container{
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -ms-border-radius:5px;
+    -o-border-radius:5px;
+
+    background-color: rgba(9, 110, 40, 0.3);
+    padding-left: 100px;
+    padding-right: 100px;
+    position: relative;
+    top:55;
+}
+
+.col-25{
+    float: left;
+    width: 10%;
+    margin-top: 6px;
+}
+
+.col-75{
+    float: left;
+    width: 90%;
+    margin-top: 6px;
+}
+
+#row:after{
+    content: "";
+    display: table;
+    clear:both;
+}
+
+#row2{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.boton{
+    text-decoration: none;
+    padding:5px;
+    font-weight: bold;
+    font-size: 26px;
+    color: #fff;
+    background-color:#1883ba;
+    border-radius:6px;
+    -webkit-border-radius:6px;
+    -moz-border-radius:6px;
+    -ms-border-radius:6px;
+    -o-border-radius:6px;
+    border:2px solid #0016b0;
+}
+
+.boton:hover{
+    color:black;
+    background-color:#0C6425;
+
+}
+/*estrategia de responsividad*/
+@media screen and (max-width:600px) {
+    .col-25,.col-75,input[type=submit]{
+        width:100%;
+        margin-top:0;
+       
+    }
+    .container{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    label#lbl{
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+        float: left;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+}
