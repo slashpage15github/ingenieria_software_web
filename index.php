@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class='container'>
-        <h1>Fomulario de Consulta</h1>
+        <h1>Fomulario de Problemáticas</h1>
         <p>Todos los campos son obligatorios</p>
     <form name="forma" action="actions/inserta_forma.php" method="post" onsubmit="return valida_forma(); ">
         
@@ -48,17 +48,34 @@
             </div> 
         </div>
         <div id="row">
+        <?php
+            include('modelo/class_departamento_dal.php');
+            $obj_lista_depa= new Departamento_dal;
+            $result_depa=$obj_lista_depa->obtener_lista_departamento();
+            /*echo '<pre>';
+            print_r($result_depa);
+            echo '</pre>';
+            exit; */
+            if ($result_depa==NULL){
+                    echo '<h2>No se encontraron empresas</h2>';
+            }
+            else{
+?>        
+                    
             <div id="col-25">
                 <label id="lbl">Departamento Solicitud:</label>
             </div>
             <div id="col-75">
                 <select id="f_depa" name="f_depa">
                 <option value="0">Seleccione:</option>
-                <option value="1">Ventas</option>
-                <option value="2">Soporte Técnico</option>
-                <option value="3">Compras</option>
+                <?php
+foreach ($result_depa as $key => $value){									
+?>
+	            <option value="<?=$value->getIdDepa(); ?>"><?=$value->getNombreDepa(); ?></option>
+<?php } ?>                
                 </select>
-            </div> 
+            </div>
+<?php } ?>             
         </div>
         <div id="row">
         <div id="col-25">
