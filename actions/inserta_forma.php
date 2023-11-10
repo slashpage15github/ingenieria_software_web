@@ -24,6 +24,7 @@ error_reporting(E_ALL);
         $comentario=isset($_POST["f_desc"]) ? $comentario=strtoupper($_POST["f_desc"]) : $departamento=null;
 
         //echo $nombre.'-'.$email.'-'.$producto.'-'.$notifica.'-'.$departamento.'-'.$comentario;
+        //inician validaciones de lado del servidor(backend)
         require_once '../php/funciones_php.php';
         $errores=array();
 
