@@ -39,7 +39,7 @@ session_start();
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
             <div class="dropdown-menu drop-ajustes" aria-labelledby="dropdown04">
 <!--              <a class="dropdown-item" href="lista_aspirantes.php">Cambios Registro</a>-->
-              <a class="dropdown-item" href="#">Gráfica</a>
+              <a class="dropdown-item" href="dashboard_grafica.php">Gráfica</a>
               <!--<a class="dropdown-item" href="#">Fechas Cursos</a>-->
             </div>
           </li>
@@ -49,7 +49,7 @@ session_start();
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálogos</a>
             <div class="dropdown-menu drop-catalogo" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="#">Catalogo de Cursos</a>
+              <a class="dropdown-item" href="#">Catálogo Departamentos</a>
             </div>
           </li>
           <!--
