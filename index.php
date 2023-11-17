@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <?php include "inclusiones/meta_tags.php" ?>
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <?php include "inclusiones/css_y_favicon.php" ?>
     <link rel='stylesheet' type='text/css' media='screen' href='css/miestilo.css'>
     <script src='js/validaciones.js'></script>
 </head>
 <body>
-    <div class='container'>
+            <!-- menu principal -->
+            <div class="container-fluid">
+                <div class="row">
+                        <div class="col-12">
+                                <?php include_once "inclusiones/menu_horizontal_superior.php" ?>
+                        </div>
+                </div>
+        </div>
+    <div class='container' style="margin-top: 65px !important;">
         <h1>Fomulario de Problemáticas</h1>
         <p>Todos los campos son obligatorios</p>
     <form name="forma" action="actions/inserta_forma.php" method="post" onsubmit="return valida_forma(); ">
@@ -90,5 +97,6 @@ foreach ($result_depa as $key => $value){
         </div>
     </form>
     </div><!-- end container-->
+    <?php include "inclusiones/js_incluidos.php" ?>
 </body>
 </html>
