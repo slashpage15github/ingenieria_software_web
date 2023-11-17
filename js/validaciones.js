@@ -23,23 +23,23 @@ let valida_forma = () => {
     //alert(js_prod.value);
     
     if (js_nom.length <= 0) {
-        alert("Error: nombre no debe ir vacio");
+        mensaje('error','Error en Nombre','El dato nombre no debe ir vacio!','<a href="www.asp.net">Necesita ayuda?</a>');
         return false;
     }
     else if (js_ema.length <= 0){
-        alert("Error: Email no debe ir vacio");
+        mensaje('error','Error en email','Email no debe ir vacio!','<a href="www.asp.net">Necesita ayuda?</a>');
         return false;
     }
     else if (!radioSelected){
-        alert("Error: Seleccione un producto");
+        mensaje('error','Error en Producto','Seleccione un producto!','<a href="www.asp.net">Necesita ayuda?</a>');
         return false;
     }
     else if (js_depa == 0){
-        alert("Error: Debe seleciconar un departamento");
+        mensaje('error','Error en Departamento','Debe seleciconar un departamento!','<a href="www.asp.net">Necesita ayuda?</a>');
         return false;
     }
     else if (js_desc.length < 50){
-        alert("Error: Al menos debe escribir algo que menciona la problematica mínimo 50 chars");
+        mensaje('error','Error en Problemática','Al menos debe escribir algo que menciona la problematica mínimo 50 chars!','<a href="www.asp.net">Necesita ayuda?</a>');
         return false;
     }
 
@@ -50,3 +50,12 @@ let valida_forma = () => {
 let getTextInputByID=(id)=>{
     return document.getElementById(id).value.trim();
 }
+
+let mensaje = (tipo,titulo,texto,liga) =>{
+    Swal.fire({
+      icon: tipo,
+      title: titulo,
+      text: texto,
+      footer: liga
+    });
+  }
