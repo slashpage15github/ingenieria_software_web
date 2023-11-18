@@ -18,7 +18,7 @@ include('actions/protected_sesion.php');
     <title>Page Title</title>
     <?php include "inclusiones/css_y_favicon.php" ?>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);

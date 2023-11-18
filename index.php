@@ -20,7 +20,7 @@ include('actions/protected_sesion.php');
                         </div>
                 </div>
         </div>
-    <div class='container' style="margin-top: 15px !important;">
+    <div class='container' style="margin-top: 20px !important;">
         <h1>Fomulario de Problemáticas</h1>
         <p>Todos los campos son obligatorios</p>
     <form name="forma" action="actions/inserta_forma.php" method="post" onsubmit="return valida_forma(); ">

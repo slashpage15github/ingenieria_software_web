@@ -49,7 +49,7 @@ session_start();
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálogos</a>
             <div class="dropdown-menu drop-catalogo" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="#">Catálogo Departamentos</a>
+              <a class="dropdown-item" href="lista_departamentos.php">Catálogo Departamentos</a>
             </div>
           </li>
           <!--
