@@ -5,17 +5,17 @@ if (!empty($_POST)){
 	$metodos_depa=new Departamento_dal;
 
 	if (isset($_POST['depa_id'])){
-		$curso_id=strtoupper($_POST['depa_id']);
+		$depa_id=strtoupper($_POST['depa_id']);
 	}else{
-		$curso_id=null;
+		$depa_id=null;
 		echo "no llego dato de depa Id";
 		exit;
 	}
 
 	if (isset($_POST['f_depa'])){
-		$nombre_curso=strtoupper($_POST['f_depa']);
+		$nombre_depa=strtoupper($_POST['f_depa']);
 	}else{
-		$nombre_curso=null;
+		$nombre_depa=null;
 		echo "no llego dato de nombre depa";
 		exit;
 	}
@@ -23,13 +23,13 @@ if (!empty($_POST)){
 	$errores=array();
 	if ($_SERVER['REQUEST_METHOD']=='POST'){
 
-		if (!validaRequerido($nombre_curso)){
+		if (!validaRequerido($nombre_depa)){
 			$errores[]="El campo de nombre de departamento esta vacio";
 		}
 
 		if (!$errores){
-			$obj_depa=new Departamento($curso_id,$nombre_curso);
-			if ($curso_id==''){
+			$obj_depa=new Departamento($depa_id,$nombre_depa);
+			if ($depa_id==''){
 
 				if($metodos_depa->inserta_departamento($obj_depa)=="1"){
 					echo 'ok';
@@ -39,7 +39,7 @@ if (!empty($_POST)){
 				}
 
 			}else{
-				if($metodos_cursos->actualizar_curso($obj_curso)=="1"){
+				if($metodos_depa->actualiza_departamento($obj_depa)=="1"){
 					echo 'ok';
 				}
 				else{

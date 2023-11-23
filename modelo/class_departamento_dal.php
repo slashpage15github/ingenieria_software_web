@@ -12,7 +12,7 @@
 
 		function datos_por_id($id){
 			$id=$this->db_conn->real_escape_string($id);
-			$sql="select * from departamento where id='$id'";
+			$sql="select * from departamento where id_depa='$id'";
 			$this->set_sql($sql);
 			$result=mysqli_query($this->db_conn,$this->db_query) or die (mysqli_error($this->db_conn));
 			$total_cursos=mysqli_num_rows($result);

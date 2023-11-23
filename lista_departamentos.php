@@ -180,7 +180,7 @@ $('#add').click(function(){
                           //bootbox.alert('correcto!');
                           Swal.fire({
                           title: "Registro de Departamento",
-                          text: "¡Curso Ingresado Correctamente!",
+                          text: "¡Departamento Ingresado Correctamente!",
                           type: "success"
                           }).then(function() {
                             window.location = "lista_departamentos.php";
@@ -240,18 +240,60 @@ $('#add').click(function(){
 
 
 $('#lista_cursos tbody').on('click', '.ver', function() {
+    $("h4.modal-title").text("Detalle de Departamento");
     // ver id
     var curso_id = $(this).data('id');
-    alert(curso_id);
+    //alert(curso_id);
     
+          if(curso_id != '')  
+           {  
+                $.ajax({  
+                     url:'actions/select_depas.php',  
+                     method:'POST',  
+                     data:{id:curso_id},  
+                     success:function(response){
+                            //alert(response);  
+                          $('#employee_detail').html(response);  
+                          $('#dataModal').modal('show');  
+                     },
+                    error : function(request, status, error) {
 
+                            var val = request.responseText;
+                            alert("error"+val);
+                    }  
+                });  
+           }
 });
 
 
 /*updTAE*/
 $('#lista_cursos tbody').on('click', '.update', function() {
-    var curso_id = $(this).data('id');
-    alert("debes actualizar el id:"+curso_id);
+  $("h4.modal-title").text("Modificación de Departamento");
+    var depa_id = $(this).data('id');
+
+    
+    //alert(curso_id);
+               $.ajax({  
+                url:"actions/fetch_depas.php",  
+                method:"POST",  
+                data:{depa_id:depa_id},  
+                dataType:"json",  
+                success:function(data){
+                //alert(JSON.stringify(data));
+
+                     
+                     $('#f_depa').val(data.nombre_depa);  
+                     $('#depa_id').val(data.IDdepa);  
+                     $('#insert').val("Actualizar");  
+                     $('#add_data_Modal').modal('show'); 
+                      
+                },
+                    error : function(request, status, error) {
+
+                            var val = request.responseText;
+                            alert("error"+val);
+                    }    
+           });
  
 });// end function update
 
@@ -295,7 +337,7 @@ $('#lista_cursos tbody').on('click', '.update', function() {
                           <label>Nombre de Departamento:</label>
                           <input type="text" name="f_depa" id="f_depa" class="form-control" />  
                           <br />  
-                          <input type="hidden" name="depa_id" id="curso_id" readonly="true" />  
+                          <input type="hidden" name="depa_id" id="depa_id" readonly="true" />  
                           <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
                      </form>  
                 </div>  
