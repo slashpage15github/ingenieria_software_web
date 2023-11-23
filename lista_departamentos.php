@@ -141,22 +141,101 @@ dom: 'Blfrtip',
 
 
 $('#add').click(function(){
-    alert("proceos de dar de alta create")  
+    
+    $("h4.modal-title").text("Agregado de Departamento");
+            $('#insert').val("Insert");  
+            $('#insert_form')[0].reset();   
       });
 
 
       $('#insert_form').on("submit", function(event,table){
+        event.preventDefault();  
+           if($('#f_depa').val() == '')  
+           {  
+            Swal.fire({
+           type: 'warning',
+           title: 'Error',
+           text: 'Error:Nombre departamento es requerido'});  
+           }  
+           else  
+           {  
+                $.ajax({  
+                     url:"actions/inserta_actualiza_depas.php",  
+                     method:"POST",  
+                     data:$('#insert_form').serialize(),  
+                     beforeSend:function(){ 
+                            if($('#depa_id').val() == ''){ 
+                              $('#insert').val("Insertando");
+                            }
+                            else{
+                              $('#insert').val("Actualizando");
+                            }  
+                     },     
+                     success:function(data){ 
+                            //alert(data); 
+                          if (data=='ok'){
+                          $('#insert_form')[0].reset();  
+                          $('#add_data_Modal').modal('hide');
+                          
+                          //bootbox.alert('correcto!');
+                          Swal.fire({
+                          title: "Registro de Departamento",
+                          text: "¡Curso Ingresado Correctamente!",
+                          type: "success"
+                          }).then(function() {
+                            window.location = "lista_departamentos.php";
+                          });
+
+                      }
+                          else{
+                            Swal.fire({
+                                    type: 'error',
+                                    title: 'No se agregó correctamente departamento, vuelva a intentar.',
+                        });
+                          }  
+                     }  
+                });  
+           }  
           
       });
  
 
     $('#lista_cursos tbody').on('click', '.delete', function() {
        
-    var el = this;
+        var el = this;
   
-    // Delete id
-    var deleteid = $(this).data('id');
-    alert("borra el id:"+ deleteid);
+  // Delete id
+  var deleteid = $(this).data('id');
+
+  // Confirm box
+  bootbox.confirm("¿Deseas realmente borrar el registro?", function(result) {
+
+     if(result){
+       // AJAX Request
+       $.ajax({
+         url: 'actions/delete_depas.php',
+         type: 'POST',
+         data: { id:deleteid },
+         success: function(response){
+            //alert(response);
+           // remueve el registro tambien del datatable
+           if(response == 1){
+              $(el).closest('tr').css('background','tomato');
+              $(el).closest('tr').fadeOut(800,function(){
+              $(this).remove();
+      });
+       }else{
+              //bootbox.alert('Registro No Fue Eliminado.');
+              Swal.fire({
+                                    type: 'error',
+                                    title: 'Departamento No Fue Eliminado, vuelva a intentar.',
+                        });
+       }
+         }
+       });
+     }
+
+  });
 });
 
 
@@ -180,3 +259,49 @@ $('#lista_cursos tbody').on('click', '.update', function() {
  </script>    
 </body>
 </html>
+<div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <legend class="text-center header">
+                     <h4 class="modal-title">Detalles de Departamento</h4>
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     </legend>  
+                       
+                </div>  
+                <div class="modal-body" id="employee_detail">  
+                </div>  
+                <div class="modal-footer"> 
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                </div>  
+           </div>  
+      </div>  
+ </div>
+
+
+<!-- modal para insertar y update -->
+  <div id="add_data_Modal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">
+                <legend class="text-center header">
+                     <h4 class="modal-title"></h4>
+                     </legend>  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                       
+                </div>  
+                <div class="modal-body">  
+                     <form method="post" id="insert_form">  
+                          <label>Nombre de Departamento:</label>
+                          <input type="text" name="f_depa" id="f_depa" class="form-control" />  
+                          <br />  
+                          <input type="hidden" name="depa_id" id="curso_id" readonly="true" />  
+                          <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
+                     </form>  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>
